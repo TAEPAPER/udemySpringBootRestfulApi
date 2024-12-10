@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+//@Controller + @ResponseBody 
 @RestController
 public class HelloWorldController {
 	
@@ -21,7 +22,11 @@ public class HelloWorldController {
 	public String helloWorld() {
 		return "Hello World"; 
 	}
-	
+	/**
+	 * JacksonHttpMessageConverter : convert to json
+	 * spring starter (spring web) 가 모든 의존성을 가져온다(auto configuration)
+	 * @return
+	 */
 	@GetMapping(path = "/hello-world-bean")
 	public HelloWorldBean helloWorldBean() {
 		return new HelloWorldBean("Hello World"); 
@@ -31,7 +36,8 @@ public class HelloWorldController {
 	// /users/{id}/todos/{id}  => /users/2/todos/200
 	// /hello-world/path-variable/{name}
 	// /hello-world/path-variable/Ranga
-
+	
+	//@PathVariable -> Spring MVC가 URL의 {변수} 를 지역변수에 초기확시켜줌.
 	@GetMapping(path = "/hello-world/path-variable/{name}")
 	public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
 		return new HelloWorldBean(String.format("Hello World, %s", name)); 
@@ -55,3 +61,4 @@ public class HelloWorldController {
 
 	
 }
+ 
