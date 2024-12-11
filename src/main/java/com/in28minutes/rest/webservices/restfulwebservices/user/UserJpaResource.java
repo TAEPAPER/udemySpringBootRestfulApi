@@ -34,7 +34,10 @@ public class UserJpaResource {
 		this.userRepository = userRepository;
 		this.postRepository = postRepository;
 	}
-
+	/**
+	 * RestfulApi
+	 * GET, POST, PUT, FETCH, DELETE
+	 */
 	@GetMapping("/jpa/users")
 	public List<User> retrieveAllUsers() {
 		return userRepository.findAll();

@@ -37,7 +37,7 @@ public class HelloWorldController {
 	// /hello-world/path-variable/{name}
 	// /hello-world/path-variable/Ranga
 	
-	//@PathVariable -> Spring MVC가 URL의 {변수} 를 지역변수에 초기확시켜줌.
+	//@PathVariable -> Spring MVC가 URL의 {변수} 를 지역변수에 초기확
 	@GetMapping(path = "/hello-world/path-variable/{name}")
 	public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
 		return new HelloWorldBean(String.format("Hello World, %s", name)); 
