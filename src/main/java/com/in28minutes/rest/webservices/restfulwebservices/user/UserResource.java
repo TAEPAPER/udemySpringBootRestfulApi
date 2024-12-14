@@ -18,6 +18,21 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import jakarta.validation.Valid;
 
+/**
+ * 상태 코드 정리
+ * Resource is not found => 404
+ * Server Exception => 500
+ * Validation eror => 400
+ * ===============================
+ * 200 - Success
+ * 201 - Created(Post 요청 시)
+ * 204 - No Content
+ * 401 - Anauthorized
+ * 400 - Bad request (such as validation error)
+ * 404 - Resource not found
+ * 500 - Server error 
+ * 
+ */
 @RestController
 public class UserResource {
 
@@ -58,11 +73,22 @@ public class UserResource {
 		service.deleteById(id);
 	}
 
+	/**
+	 * ResponseEntity.created => 201 응답코드 반환
+	 * location을 인자로 받음 (location은 response header에 추가)
+	 * 
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/users")
 	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		
 		User savedUser = service.save(user);
-
+		
+		//ServletUriComponentsBuilder.fromCurrentRequest() -> /users
+		//.path("/{id}") -> /users/{id}
+		//.buildAndExpand(savedUser.getId()) -> /users/4
+		//.toUri() -> uri로 변환
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 						.path("/{id}")
 						.buildAndExpand(savedUser.getId())
