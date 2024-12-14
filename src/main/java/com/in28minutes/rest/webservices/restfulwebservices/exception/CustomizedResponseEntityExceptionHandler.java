@@ -15,7 +15,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.in28minutes.rest.webservices.restfulwebservices.user.UserNotFoundException;
 
-
+/**
+ * ResponseEntityExceptionHandler 
+ * =>A class with an @ExceptionHandler method that handles all Spring MVC raised exceptions by returning a ResponseEntity with RFC 9457 formatted error details in the body.
+ *   spring mvc가 모든 exception에 대한 응답 구조를 설정하는 부분
+ * => 커스터마이징을 위해 extends
+ * @ExceptionHandler(Exception.class) -> 모든 Exception에 대한 응답구조 설정
+ * @ExceptionHandler(UserNotFoundException.class) -> 특정 Exception에 대한 응답구조 설정
+ * 
+ */
 @ControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
 
