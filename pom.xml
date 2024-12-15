@@ -53,7 +53,10 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
-
+		<!--Rest API 문서 생성 
+			-> 명세 문서 
+			-> 요청과 응답에 대한 명세
+		-->
 		<!-- <dependency> 
 				<groupId>org.springdoc</groupId> 
 				<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId> 
