@@ -42,7 +42,15 @@ public class HelloWorldController {
 	public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
 		return new HelloWorldBean(String.format("Hello World, %s", name)); 
 	}
-
+	/**
+	 * i18n
+	 * header 의 Accept-Language : en, nl(네덜란드), fr(프랑스) 설정
+	 * -> LocaleContextHolder.getLocale(); -> Accept-Language 값 get
+	 * -> nl 인 경우 :
+	 *    message_nl.properties에서 good.morning.message 가져옴 
+	 *   
+	 */
+	
 	@GetMapping(path = "/hello-world-internationalized")
 	public String helloWorldInternationalized() {
 		Locale locale = LocaleContextHolder.getLocale();
