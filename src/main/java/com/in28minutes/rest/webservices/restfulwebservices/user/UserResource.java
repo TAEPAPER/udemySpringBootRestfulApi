@@ -28,7 +28,7 @@ import jakarta.validation.Valid;
  * 201 - Created(Post 요청 시)
  * 204 - No Content
  * 401 - Anauthorized
- * 400 - Bad request (such as validation error)
+ * 400 - Bad request (such as validation error[@Valid])
  * 404 - Resource not found
  * 500 - Server error 
  * 

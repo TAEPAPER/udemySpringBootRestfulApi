@@ -12,7 +12,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
-
+/**
+ * UserResource의 @Valid 설정 
+ * -> @Size, @Past
+ */
 @Entity(name = "user_details")
 public class User {
 	
