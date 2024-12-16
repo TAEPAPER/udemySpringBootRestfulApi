@@ -2,14 +2,16 @@ package com.in28minutes.rest.webservices.restfulwebservices.filtering;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-//@JsonIgnoreProperties({"field1","field2"})
+//@JsonIgnoreProperties({"field1","field2"}) -> class 단위의 static filtering
+//JsonFilter : Annotation used to indicate which logical filter 
+//  		   is to be used for filtering out properties of type
 @JsonFilter("SomeBeanFilter")
 public class SomeBean {
 	private String field1;
 	
 	private String field2;
 
-	//@JsonIgnore
+	//@JsonIgnore -> static filtering
 	private String field3;
 
 	public SomeBean(String field1, String field2, String field3) {
