@@ -52,7 +52,13 @@ public class UserResource {
 	
 	//EntityModel
 	//WebMvcLinkBuilder
-	
+	/**
+	 * 
+	 * Hateoas -> 사용자에게 더 많은 데이터를 제공할 수 있게 해줌
+	 * EntityModel, WebMvcLinkBuilder 이용  
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/users/{id}")
 	public EntityModel<User> retrieveUser(@PathVariable int id) {
 		User user = service.findOne(id);
@@ -60,9 +66,14 @@ public class UserResource {
 		if(user==null)
 			throw new UserNotFoundException("id:"+id);
 		
+		//EntityModel에 User 담아줌 
 		EntityModel<User> entityModel = EntityModel.of(user);
 		
+		//import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+		//WebMvcLinkBuilder의 linkTo : Creates a WebMvcLinkBuilder pointing to a controller method
+		//this.getClass().retrieveAllUsers() : 현재 controller의 retrieveAllUsers() 메소드
 		WebMvcLinkBuilder link =  linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		//링크 Rel 설정
 		entityModel.add(link.withRel("all-users"));
 		
 		return entityModel;
