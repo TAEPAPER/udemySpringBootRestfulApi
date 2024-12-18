@@ -36,7 +36,11 @@ public class User {
 	@Past(message = "Birth Date should be in the past")
 	//@JsonProperty("birth_date")
 	private LocalDate birthDate;
-	
+	/**
+	 * 일대다 관계 
+	 * mappedBy 에는 Post.java의 User user
+	 * @JsonIgnore : 응답 json에 포함 X
+	 */
 	@OneToMany(mappedBy = "user")
 	@JsonIgnore
 	private List<Post> posts;

@@ -8,7 +8,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Size;
-
+/**
+ * User 와의 관계 : 일대다 관계
+ * 
+ */
 @Entity
 public class Post {
 	
@@ -19,8 +22,13 @@ public class Post {
 	@Size(min = 10)
 	private String description;
 	
+	/**
+	 * User.java의 List<Post> 에는 @OneToMany
+	 * Post.java에는 반대로 @ManyToOne
+	 * FetchType.Lazy : Post를 불러올 때 User 정보 안보겠다는 의미 
+	 */
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
+	@JsonIgnore 
 	private User user;
 
 	public Integer getId() {
