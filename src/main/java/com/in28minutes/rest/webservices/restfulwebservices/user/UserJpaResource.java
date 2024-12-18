@@ -85,7 +85,7 @@ public class UserJpaResource {
 		return user.get().getPosts();
 
 	}
-
+	
 	@PostMapping("/jpa/users")
 	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		
@@ -99,23 +99,28 @@ public class UserJpaResource {
 		return ResponseEntity.created(location).build();
 	}
 
-
+	/**
+	 * 일대다 관계에서 게시글(다) 생성하기
+	 * @param id
+	 * @param post
+	 * @return
+	 */
 	@PostMapping("/jpa/users/{id}/posts")
 	public ResponseEntity<Object> createPostForUser(@PathVariable int id, @Valid @RequestBody Post post) {
 		Optional<User> user = userRepository.findById(id);
 		
 		if(user.isEmpty())
 			throw new UserNotFoundException("id:"+id);
-		
+		//Post.java의 User user를 set 
 		post.setUser(user.get());
-		
+		//게시글 저장 
 		Post savedPost = postRepository.save(post);
-		
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}")
+		//저장완료 후 사용자에게 uri 제공 
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest() ///jpa/users/{id}/posts
+				.path("/{id}") ///jpa/users/{id(userid)}/posts/{id(postid)}
 				.buildAndExpand(savedPost.getId())
 				.toUri();   
-
+			// response header 에 location 제공  
 		return ResponseEntity.created(location).build();
 
 	}
