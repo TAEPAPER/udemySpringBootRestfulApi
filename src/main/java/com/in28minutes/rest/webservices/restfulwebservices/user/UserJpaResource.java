@@ -69,14 +69,19 @@ public class UserJpaResource {
 		userRepository.deleteById(id);
 	}
 
-	
+	/**
+	 * 특정 사용자의 Posts 가져오기 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/jpa/users/{id}/posts")
 	public List<Post> retrievePostsForUser(@PathVariable int id) {
+		//User 찾기
 		Optional<User> user = userRepository.findById(id);
 		
 		if(user.isEmpty())
 			throw new UserNotFoundException("id:"+id);
-		
+		//user의 List<Post> posts 에 담김 
 		return user.get().getPosts();
 
 	}
