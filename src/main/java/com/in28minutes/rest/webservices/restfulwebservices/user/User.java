@@ -15,16 +15,18 @@ import jakarta.validation.constraints.Size;
 /**
  * UserResource의 @Valid 설정 
  * -> @Size, @Past
+ * 
+ * @Entity : JPA 설정
  */
-@Entity(name = "user_details")
+@Entity(name = "user_details")//테이블 이름과 같아야함
 public class User {
 	
 	protected User() {
 		
 	}
 	
-	@Id
-	@GeneratedValue
+	@Id //식별 
+	@GeneratedValue //sequence
 	private Integer id;
 	
 	@Size(min=2, message = "Name should have atleast 2 characters")

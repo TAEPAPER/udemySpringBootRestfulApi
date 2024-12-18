@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 
 @RestController
 public class UserJpaResource {
-
+	//JpaRepository extends 인터페이
 	private UserRepository userRepository;
 	
 	private PostRepository postRepository;
@@ -52,12 +52,12 @@ public class UserJpaResource {
 	@GetMapping("/jpa/users/{id}")
 	public EntityModel<User> retrieveUser(@PathVariable int id) {
 		Optional<User> user = userRepository.findById(id);
-		
+		//Optional의 empty check
 		if(user.isEmpty())
 			throw new UserNotFoundException("id:"+id);
 		
 		EntityModel<User> entityModel = EntityModel.of(user.get());
-		
+		//hateoas 응답 확장 
 		WebMvcLinkBuilder link =  linkTo(methodOn(this.getClass()).retrieveAllUsers());
 		entityModel.add(link.withRel("all-users"));
 		

@@ -1,7 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.exception;
 
 import java.time.LocalDateTime;
-
+/**
+ * response로 원하는 구조
+ */
 public class ErrorDetails {
 
 	private LocalDateTime timestamp;
